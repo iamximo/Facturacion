@@ -44,6 +44,10 @@ public class Cliente implements Fecha {
         return email;
     }
 
+    public Tarifa getTarifa() {
+        return tarifa;
+    }
+
     public LocalDateTime getFecha() {
         return fecha;
     }

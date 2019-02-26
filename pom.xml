@@ -32,6 +32,14 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
+        <!--Biblioteca para generar datos aleatorios-->
+        <dependency>
+            <groupId>com.github.TallerIngenieriaDelSoftware</groupId>
+            <artifactId>GeneradorDatosINE</artifactId>
+            <version>v1.0.0</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <pluginManagement>
@@ -53,6 +61,13 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+
     </repositories>
 
 </project>
