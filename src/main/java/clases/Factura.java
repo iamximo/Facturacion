@@ -6,10 +6,10 @@ public class Factura implements Fecha{
 
     private String codigo;
     private Tarifa tarifa;
-    private LocalDateTime fechaEmision;
+    private LocalDateTime fechaEmision=null;
     private LocalDateTime inicioFacturacion;
     private LocalDateTime finFacturacion;
-    private float importe;
+    private float importe=0;
 
     public Factura(String codigo, Tarifa tarifa, LocalDateTime inicioFacturacion, LocalDateTime finFacturacion){
         this.codigo=codigo;

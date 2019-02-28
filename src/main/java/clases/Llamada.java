@@ -6,7 +6,7 @@ public class Llamada implements Fecha{
 
     private String numDestino;
     private LocalDateTime fechaHora;
-    private float duracion;
+    private float duracion; // En  minutos
 
     public Llamada(String numDestino, LocalDateTime fechaHora, float duracion){
 
