@@ -33,6 +33,10 @@ public class GeneradorDatos
     }
     }
 
+    public ArrayList<Cliente> getListaClientesPrueba() {
+        return listaClientesPrueba;
+    }
+
     /*
     public static void main(String[] args) {
         GeneradorDatos g = new GeneradorDatos();

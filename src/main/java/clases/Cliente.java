@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Cliente implements Fecha {
 
-    private String nombre;
+    private  String nombre;
     private String nif;
     private Direccion direccion;
     private String email;
