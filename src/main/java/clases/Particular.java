@@ -15,5 +15,9 @@ public class Particular extends Cliente {
         return apellidos;
     }
 
+    public String toString(){
+        return super.toString()+"\nAPELLIDOS: "+getApellidos();
+    }
+
 
 }

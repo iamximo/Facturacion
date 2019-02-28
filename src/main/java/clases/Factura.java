@@ -50,5 +50,11 @@ public class Factura implements Fecha{
         return importe;
     }
 
+    public String toString(){
+        return "\nTARIFA: "+tarifa.toString()+"\n INICIO FACT: "+this.inicioFacturacion+"\n FIN FACT: "+this.finFacturacion+"FECHA EMISION: "+this.fechaEmision;
+    }
+
+
+
 
 }

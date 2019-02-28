@@ -26,4 +26,10 @@ public class Llamada implements Fecha{
     public float getDuracion() {
         return duracion;
     }
+
+    public String toString(){
+        return "\nNUMERO DESTINO: "+this.numDestino+"\nFECHA: "+this.fechaHora+"\nDURACION: "+this.duracion;
+    }
+
+
 }

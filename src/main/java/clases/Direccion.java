@@ -1,5 +1,7 @@
 package clases;
 
+import javax.print.DocFlavor;
+
 public class Direccion {
     private int codigoPostal;
     private String provincia;
@@ -21,6 +23,10 @@ public class Direccion {
 
     public String getPoblacion(){
         return poblacion;
+    }
+
+    public String toString(){
+        return "\n\tPROVINCIA: "+getProvincia()+"\n\tPOBLACION: "+getPoblacion()+"\n\tCODIGO POSTAL: "+getCodigoPostal();
     }
 
 }

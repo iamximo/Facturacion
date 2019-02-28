@@ -15,4 +15,9 @@ public class Tarifa {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
+    public String toString(){
+        return String.valueOf(this.precio);
+    }
+
 }

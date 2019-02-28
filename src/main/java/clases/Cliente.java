@@ -19,7 +19,7 @@ public class Cliente implements Fecha {
 
     public Cliente(String nombre, String nif, Direccion direccion, String email, LocalDateTime fecha, float precio){
         this.nombre=nombre;
-        this.nombre=nif;
+        this.nif=nif;
         this.direccion=direccion;
         this.email=email;
         this.fecha=fecha;
@@ -64,6 +64,10 @@ public class Cliente implements Fecha {
     }
     public void addLlamada(Llamada llamada){
         this.listaLlamadas.add(llamada);
+    }
+
+    public String toString(){
+        return "\nNIF: "+this.getNif()+"\nNOMBRE: "+this.getNombre()+"\nDIRECCION: "+this.getDireccion().toString()+"\nEMAIL: "+this.getEmail()+"\nFECHA: "+this.getFecha()+"\nTARIFA: "+this.getTarifa().toString();
     }
 
 
