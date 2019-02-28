@@ -74,5 +74,14 @@ public class Gestor{
         return listaClientes.get(nif).getListaFacturas();
     }
 
+    public void generarClientesAleatorios(){
+        GeneradorDatos gen = new GeneradorDatos();
+        List<Cliente> lista = gen.listaClientesPrueba;
+        for(Cliente cli:lista){
+            listaClientes.put(cli.getNif(),cli);
+        }
+
+    }
+
 }
 

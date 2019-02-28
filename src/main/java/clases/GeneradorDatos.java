@@ -11,7 +11,10 @@ public class GeneradorDatos
     GeneradorDatosINE gen = new GeneradorDatosINE();
     Cliente cli;
 
-    public GeneradorDatos() {}
+    public GeneradorDatos() {
+        generar();
+    }
+
 
     private void generar() { for (int i = 0; i < 50; i++) {
         String prov = gen.getProvincia();
