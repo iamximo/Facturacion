@@ -1,8 +1,7 @@
+
 import clases.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import java.time.LocalDateTime;
 import static org.junit.Assert.assertEquals;
 
 public class GestorTest {

@@ -1,14 +1,7 @@
 
 import clases.*;
-import clases.GeneradorDatos;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-
-import java.util.*;
-
 import java.time.LocalDateTime;
-
 import static org.junit.Assert.assertEquals;
 
 public class ClienteTest {
