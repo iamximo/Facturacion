@@ -8,8 +8,13 @@ import java.util.Set;
 
 public class Gestor{
 
-    HashMap<String,Cliente> listaClientes = new HashMap<String,Cliente>();
-    HashMap<String,Factura> listaFacturas = new HashMap<String, Factura>();
+    private HashMap<String,Cliente> listaClientes;
+    private HashMap<String,Factura> listaFacturas;
+
+    public Gestor(){
+        listaClientes= new HashMap<String, Cliente>();
+        listaFacturas= new HashMap<String, Factura>();
+    }
 
     public boolean altaCliente(Cliente nuevo){
 
@@ -17,7 +22,6 @@ public class Gestor{
 
         listaClientes.put(nuevo.getNif(),nuevo);
         return true;
-
     }
 
     public boolean bajaCliente(String nif){
@@ -53,6 +57,10 @@ public class Gestor{
         return listaClientes.get(nif).getListaLlamadas();
     }
 
+    public boolean existeCodigoFactura(String codigo){
+        return listaFacturas.containsKey(codigo);
+    }
+
     public Factura emitirFactura(Factura factura, Cliente cliente, LocalDateTime fechaEmision){
         factura.setFechaEmision(fechaEmision);
         int minutos=0;
@@ -62,7 +70,8 @@ public class Gestor{
             }
         }
         factura.setImporte(factura.getTarifa().getPrecio()*minutos);
-        listaFacturas.put(factura.getCodigo(),factura); //¿Cuando anyadimos factura?
+        listaFacturas.put(factura.getCodigo(),factura);
+        cliente.addFactura(factura);
         return factura;
     }
 

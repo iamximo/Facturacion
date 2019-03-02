@@ -65,6 +65,7 @@ public class Cliente implements Fecha {
     public void addLlamada(Llamada llamada){
         this.listaLlamadas.add(llamada);
     }
+    public void addFactura(Factura factura){ this.listaFacturas.add(factura);}
 
     public String toString(){
         return "\nNIF: "+this.getNif()+"\nNOMBRE: "+this.getNombre()+"\nDIRECCION: "+this.getDireccion().toString()+"\nEMAIL: "+this.getEmail()+"\nFECHA: "+this.getFecha()+"\nTARIFA: "+this.getTarifa().toString();
