@@ -1,11 +1,13 @@
 package clases;
 
 import es.uji.www.GeneradorDatosINE;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class GeneradorDatos
+public class GeneradorDatos implements Serializable
 {
     ArrayList<Cliente> listaClientesPrueba = new ArrayList();
     GeneradorDatosINE gen = new GeneradorDatosINE();

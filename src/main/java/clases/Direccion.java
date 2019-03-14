@@ -1,8 +1,9 @@
 package clases;
 
 import javax.print.DocFlavor;
+import java.io.Serializable;
 
-public class Direccion {
+public class Direccion implements Serializable {
     private int codigoPostal;
     private String provincia;
     private String poblacion;

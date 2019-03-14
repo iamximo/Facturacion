@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import clases.*;
+import excepciones.NoExisteClienteException;
 
 public class AppLlamadas {
 
@@ -24,17 +25,8 @@ public class AppLlamadas {
                     String nif=scan.next();
                     System.out.println("Introduzca el numero destino de la llamada: ");
                     String numDestino=scan.next();
-                    System.out.println("Introduzca la fecha y hora que se realizó la llamada: \n Año: ");
-                    int year=scan.nextInt();
-                    System.out.println("Mes: ");
-                    int month=scan.nextInt();
-                    System.out.println("Dia: ");
-                    int day=scan.nextInt();
-                    System.out.println("Hora: ");
-                    int hour=scan.nextInt();
-                    System.out.println("Minuto: ");
-                    int min=scan.nextInt();
-                    LocalDateTime fechaHora=LocalDateTime.of(year,month,day,hour,min);
+                    System.out.println("Introduzca la fecha y hora que se realizó la llamada: ");
+                    LocalDateTime fechaHora=gestor.pedirFecha();
                     System.out.println("Introduzca la duracion de la llamada: ");
                     int duracion=scan.nextInt();
                     Llamada nuevaLlamada=new Llamada(numDestino,fechaHora,duracion);
@@ -44,9 +36,22 @@ public class AppLlamadas {
                     System.out.println("Consultar las llamadas de un cliente: \n Introduzca el NIF de un cliente:");
                     nif=scan.next();
                     List<Llamada> listaLlamadas=gestor.llamadasCliente(nif);
-                    System.out.println("Llamadas realizadas por "+nif+" : ");
-                    for(Llamada llamada:listaLlamadas){
-                        System.out.println(llamada);
+                    System.out.println("Llamadas realizadas por " + nif + " : ");
+                    System.out.println(gestor.mostrarColleccion(listaLlamadas));
+                    break;
+                case LLAMADAS_INTERVALO:
+                    System.out.println(MenuLlamadas.LLAMADAS_INTERVALO.getDescripcion());
+                    System.out.println("Introduzca el NIF del cliente: ");
+                    nif = scan.next();
+                    System.out.println("Introduzca fecha de inicio del periodo:");
+                    LocalDateTime fechaInicio = gestor.pedirFecha();
+                    System.out.println("Introduzca fecha de fin del periodo:");
+                    LocalDateTime fechaFin=gestor.pedirFecha();
+                    try{
+                        List<Llamada> listaLlamadasIntervalo= gestor.estaEnElIntervalo(gestor.getCliente(nif).getListaLlamadas(),fechaInicio,fechaFin);
+                        System.out.println(gestor.mostrarColleccion(listaLlamadasIntervalo));
+                    }catch (NoExisteClienteException e){
+                        System.out.println("No existe ningun cliente con ese NIF.");
                     }
                     break;
                 case PRINCIPAL:

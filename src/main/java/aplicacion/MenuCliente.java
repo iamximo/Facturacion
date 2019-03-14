@@ -8,6 +8,7 @@ public enum MenuCliente{
     CAMBIO_TARIFA("Cambiar la tarifa de un cliente"),
     DATOS_CLIENTE("Consultar los datos de un cliente"),
     LISTADO_CLIENTES("Consultar el listado de todos los clientes"),
+    LISTADO_CLIENTES_FECHA("Consultar el listado de clientes entre dos fechas"),
     AUTOMATICO("Dar de alta clientes de forma automatica"),
     PRINCIPAL("Volver al menu principal");
 

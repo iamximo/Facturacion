@@ -1,6 +1,8 @@
 package aplicacion;
 
 import clases.*;
+import excepciones.NoExisteClienteException;
+import excepciones.NoExisteFacturaException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +21,7 @@ public class AppFacturas {
 
             switch (opcionMenuFacturas) {
                 case EMITIR_FACTURA:
-                    System.out.println("Emitir una nueva factura");
+                    System.out.println(MenuFacturas.EMITIR_FACTURA.getDescripcion());
                     System.out.println("Introduzca un codigo identificativo para la factura: ");
                     String codigo = scan.next();
                     while(gestor.existeCodigoFactura(codigo)){
@@ -28,45 +30,59 @@ public class AppFacturas {
                     }
                     System.out.println("Introduzca el NIF del cliente: ");
                     String nif = scan.next();
-                    Cliente clienteFactura = gestor.getCliente(nif);
+                    Cliente clienteFactura;
+                    try{
+                        clienteFactura = gestor.getCliente(nif);
+                    }catch (NoExisteClienteException e){
+                        System.out.println("No existe un cliente con ese NIF.");
+                        break;
+                    }
                     Tarifa tarifa=clienteFactura.getTarifa();
                     System.out.println("Introduzca fecha de inicio de facturacion:");
-                    System.out.println("Año:");
-                    int year=scan.nextInt();
-                    System.out.println("Mes: ");
-                    int month=scan.nextInt();
-                    System.out.println("Dia: ");
-                    int day=scan.nextInt();
-                    LocalDateTime inicioFacturacion = LocalDateTime.of(year,month,day,0,0);
+                    LocalDateTime inicioFacturacion = gestor.pedirFecha();
                     System.out.println("Introduzca fecha de fin de facturacion:");
-                    System.out.println("Año:");
-                    year=scan.nextInt();
-                    System.out.println("Mes: ");
-                    month=scan.nextInt();
-                    System.out.println("Dia: ");
-                    day=scan.nextInt();
-                    LocalDateTime finFacturacion=LocalDateTime.of(year,month,day,23,59);
+                    LocalDateTime finFacturacion=gestor.pedirFecha();
                     Factura nuevaFactura = new Factura(codigo,tarifa,inicioFacturacion,finFacturacion);
                     Factura facturaEmitida = gestor.emitirFactura(nuevaFactura,clienteFactura,LocalDateTime.now());
                     System.out.println("Factura emitida: ");
                     System.out.println(facturaEmitida);
                     break;
                 case COLSULTAR_FACTURA:
-                    System.out.println("Consultar datos de una factura: ");
+                    System.out.println(MenuFacturas.COLSULTAR_FACTURA.getDescripcion());
                     System.out.println("Introduzca el codigo de la factura que desea consultar: ");
                     codigo = scan.next();
-                    if(!gestor.existeCodigoFactura(codigo)){
-                        System.out.println("El codigo introducido no es valido. ");
-                        break;
+                    try{
+                        Factura facturaConsultada=gestor.getFactura(codigo);
+                        System.out.println(facturaConsultada);
+
+                    }catch (NoExisteFacturaException e){
+                        System.out.println("No existe ninguna factura con este codigo.");
                     }
-                    Factura facturaConsultada=gestor.getFactura(codigo);
-                    System.out.println(facturaConsultada);
+                    break;
+                case FACTURAS_INTERVALO:
+                    System.out.println(MenuFacturas.FACTURAS_INTERVALO.getDescripcion());
+                    System.out.println("Introduzca el NIF del cliente: ");
+                    nif = scan.next();
+                    System.out.println("Introduzca fecha de inicio del periodo:");
+                    LocalDateTime fechaInicio = gestor.pedirFecha();
+                    System.out.println("Introduzca fecha de fin del periodo:");
+                    LocalDateTime fechaFin=gestor.pedirFecha();
+                    try{
+                        List<Factura> listaFacturasIntervalo= gestor.estaEnElIntervalo(gestor.getCliente(nif).getListaFacturas(),fechaInicio,fechaFin);
+                        System.out.println(gestor.mostrarColleccion(listaFacturasIntervalo));
+                    }catch (NoExisteClienteException e){
+                        System.out.println("No existe ningun cliente con ese NIF");
+                    }
                     break;
                 case FACTURAS_CLIENTE:
-                    System.out.println("Consultar las facturas de un cliente: \nIntroduzca el NIF de un clinete: ");
+                    System.out.println(MenuFacturas.FACTURAS_CLIENTE.getDescripcion()+"\nIntroduzca el NIF de un clinete: ");
                     nif=scan.next();
-                    List<Factura> listaFacturas=gestor.getFacturasCliente(nif);
-                    for(Factura factura:listaFacturas) System.out.println(factura);
+                    try{
+                        List<Factura> listaFacturas=gestor.getFacturasCliente(nif);
+                        System.out.println(gestor.mostrarColleccion(listaFacturas));
+                    }catch (NoExisteClienteException e){
+                        System.out.println("No existe un cliente con ese NIF");
+                    }
                     break;
                 case PRINCIPAL:
                     break;

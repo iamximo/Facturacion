@@ -1,12 +1,14 @@
 package clases;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import excepciones.ClienteExistenteException;
+import excepciones.NoExisteClienteException;
+import excepciones.NoExisteFacturaException;
 
-public class Gestor{
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.*;
+
+public class Gestor implements Serializable {
 
     private HashMap<String,Cliente> listaClientes;
     private HashMap<String,Factura> listaFacturas;
@@ -16,33 +18,33 @@ public class Gestor{
         listaFacturas= new HashMap<String, Factura>();
     }
 
-    public boolean altaCliente(Cliente nuevo){
+    public void altaCliente(Cliente nuevo) throws ClienteExistenteException {
 
-        if (listaClientes.containsKey(nuevo.getNif())) return false;//el cliente ya existe
-
-        listaClientes.put(nuevo.getNif(),nuevo);
-        return true;
-    }
-
-    public boolean bajaCliente(String nif){
-
-        if (listaClientes.containsKey(nif)){
-            listaClientes.remove(nif);
-            return true;
+        if (listaClientes.containsKey(nuevo.getNif())){
+            throw new ClienteExistenteException();
         }
-        return false;
+        listaClientes.put(nuevo.getNif(),nuevo);
     }
 
-    public boolean cambioTarifa(String nif, float nuevoPrecio){
+    public void bajaCliente(String nif) throws NoExisteClienteException{
 
-        if(!listaClientes.containsKey(nif)) return false;
+        if (listaClientes.containsKey(nif))
+            listaClientes.remove(nif);
+        else throw new NoExisteClienteException();
+    }
+
+    public void cambioTarifa(String nif, float nuevoPrecio) throws NoExisteClienteException{
+
+        if(!listaClientes.containsKey(nif)) throw new NoExisteClienteException();
 
         listaClientes.get(nif).cambiarTarifa(nuevoPrecio);
-        return true;
     }
 
-    public Cliente getCliente( String nif){
-        return listaClientes.get(nif);
+    public Cliente getCliente( String nif) throws NoExisteClienteException {
+
+        if (listaClientes.containsKey(nif))
+            return listaClientes.get(nif);
+        throw new NoExisteClienteException();
     }
 
     public Collection<Cliente> getListaClientes(){
@@ -75,11 +77,13 @@ public class Gestor{
         return factura;
     }
 
-    public Factura getFactura(String codigo){
+    public Factura getFactura(String codigo) throws NoExisteFacturaException{
+        if(!listaFacturas.containsKey(codigo)) throw new NoExisteFacturaException();
         return listaFacturas.get(codigo);
     }
 
-    public List<Factura> getFacturasCliente(String nif){
+    public List<Factura> getFacturasCliente(String nif)throws NoExisteClienteException{
+        if(!listaClientes.containsKey(nif)) throw new NoExisteClienteException();
         return listaClientes.get(nif).getListaFacturas();
     }
 
@@ -90,6 +94,40 @@ public class Gestor{
             listaClientes.put(cli.getNif(),cli);
         }
 
+    }
+
+    public <T extends Fecha> List<T> estaEnElIntervalo(Collection<T> lista, LocalDateTime fechaInicio, LocalDateTime fechaFinal){
+        List<T> listaResultado = new ArrayList<T>();
+        for (T elemento : lista){
+            if(elemento.getFecha().compareTo(fechaInicio)>=0 && elemento.getFecha().compareTo(fechaFinal)<=0)
+                listaResultado.add(elemento);
+        }
+        return listaResultado;
+    }
+
+    public <T> String mostrarColleccion(Collection<T> coleccion){
+        StringBuilder sb = new StringBuilder();
+        for (T elem : coleccion){
+            sb.append("-------------------------------------------\n");
+            sb.append(elem);
+            sb.append("\n-------------------------------------------\n");
+        }
+        return sb.toString();
+    }
+
+    public LocalDateTime pedirFecha(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Anyo: ");
+        int year=scan.nextInt();
+        System.out.println("Mes: ");
+        int month=scan.nextInt();
+        System.out.println("Dia: ");
+        int day=scan.nextInt();
+        System.out.println("Hora: ");
+        int hour=scan.nextInt();
+        System.out.println("Minuto: ");
+        int min=scan.nextInt();
+        return LocalDateTime.of(year,month,day,hour,min);
     }
 
 }

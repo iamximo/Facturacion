@@ -1,6 +1,8 @@
 package clases;
 
-public class Tarifa {
+import java.io.Serializable;
+
+public class Tarifa implements Serializable {
 
     private float precio;
 

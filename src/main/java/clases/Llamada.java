@@ -1,8 +1,9 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Llamada implements Fecha{
+public class Llamada implements Fecha, Serializable {
 
     private String numDestino;
     private LocalDateTime fechaHora;

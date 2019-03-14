@@ -4,6 +4,7 @@ public enum MenuLlamadas{
 
     ALTA_LLAMADA("Dar de alta una llamada"),
     LLAMADAS_CLIENTE("Consultar las llamadas de un cliente"),
+    LLAMADAS_INTERVALO("Consultar el listado de llamadas de un cliente en un intervalo"),
     PRINCIPAL("Volver al menu principal");
 
     private String descripcion;

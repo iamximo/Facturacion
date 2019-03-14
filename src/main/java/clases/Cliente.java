@@ -1,10 +1,11 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente implements Fecha {
+public class Cliente implements Fecha, Serializable {
 
     private  String nombre;
     private String nif;

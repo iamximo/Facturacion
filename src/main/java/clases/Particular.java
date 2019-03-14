@@ -1,8 +1,9 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Particular extends Cliente {
+public class Particular extends Cliente implements Serializable {
 
     private String apellidos;
 

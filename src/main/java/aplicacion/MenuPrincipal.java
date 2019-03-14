@@ -5,6 +5,8 @@ package aplicacion;
         CLIENTES("Menu de gestion de clientes"),
         FACTURAS("Menu de gestion de las facturas"),
         LLAMADAS("Menu de gestion de las llamadas"),
+        CARGAR("Cargar datos desde un fichero"),
+        GUARDAR("Guardar datos en un fichero"),
         SALIR("Finalizar");
 
         private String descripcion;

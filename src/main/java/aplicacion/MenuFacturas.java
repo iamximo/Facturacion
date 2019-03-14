@@ -5,6 +5,7 @@ public enum MenuFacturas {
     EMITIR_FACTURA("Emitir facutura"),
     COLSULTAR_FACTURA("Consultar datos de una factura"),
     FACTURAS_CLIENTE("Consultar todas las facturas de un cliente"),
+    FACTURAS_INTERVALO("Consultar el listado de facturas de un cliente en un intervalo"),
     PRINCIPAL("Volver al menu principal");
 
     private String descripcion;
