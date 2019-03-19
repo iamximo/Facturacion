@@ -35,15 +35,15 @@ public class AppPrincipal { //Falta poner fuera del main, poner fuera de los cas
                     AppLlamadas.ejecutarMenu(gestor);
                     break;
                 case CARGAR:
-                    try{
+
                         EntradaSalida a=new EntradaSalida();
                         gestor=a.cargarDatos();
-                    }catch (FileNotFoundException e){}
+
                     break;
                 case GUARDAR:
-                    try{
+
                         new EntradaSalida().guardarDatos(gestor);
-                    }catch (FileNotFoundException e){}
+
                     break;
                 case SALIR:
                     System.out.println("Hasta pronto :) ");

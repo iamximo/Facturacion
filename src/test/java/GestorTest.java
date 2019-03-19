@@ -4,6 +4,9 @@ import excepciones.ClienteExistenteException;
 import excepciones.NoExisteClienteException;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -16,7 +19,11 @@ public class GestorTest {
         miGestor=new Gestor();
     }
 
-    Cliente cli1= new Cliente("Juan","20914825U",null,"juan@uji.es",null,2);
+    LocalDateTime fecha = LocalDateTime.of(1999,11,6,10,00);
+    LocalDateTime fecha2 = LocalDateTime.of(1999,11,7,10,00);
+
+    Cliente cli1= new Cliente("Juan","20914825U",null,"juan@uji.es",fecha,2);
+    Cliente cli2= new Cliente("Juana","20914825Us",null,"juan@uji.es",fecha2,2);
     Llamada llam=new Llamada("675672891",null,3);
 
 
@@ -95,6 +102,23 @@ public class GestorTest {
         }catch (NoExisteClienteException e){
             fail();
         }
+    }
+
+    @Test
+    public void estaEnElIntervaloTest(){
+        try {
+            miGestor.altaCliente(cli1);
+        }catch(ClienteExistenteException e){}
+        try {
+            miGestor.altaCliente(cli2);
+        }catch(ClienteExistenteException e){}
+
+        LocalDateTime fecha_ref = LocalDateTime.of(1999,11,6,00,00);
+        LocalDateTime fecha_ref2 = LocalDateTime.of(1999,11,6,23,00);
+        LocalDateTime fecha_ref3 = LocalDateTime.of(1999,12,8,23,00);
+        assertEquals(miGestor.estaEnElIntervalo(miGestor.getListaClientes(),fecha_ref,fecha_ref2).size(),1,0);
+        assertEquals(miGestor.estaEnElIntervalo(miGestor.getListaClientes(),fecha_ref,fecha_ref3).size(),2,0);
+
     }
 
 

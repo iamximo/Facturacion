@@ -10,7 +10,7 @@ public class EntradaSalida implements Serializable {
     FileOutputStream fichSalida;
     FileInputStream fichEntrada;
 
-    public void guardarDatos(Gestor gestor)throws FileNotFoundException{
+    public void guardarDatos(Gestor gestor){
 
         Scanner scan= new Scanner(System.in);
         System.out.println("Dime el nombre del fichero para guarar datos;");
@@ -32,7 +32,7 @@ public class EntradaSalida implements Serializable {
 
     }
 
-    public Gestor cargarDatos()throws FileNotFoundException{
+    public Gestor cargarDatos(){
 
         Gestor gestor;
         Scanner scan= new Scanner(System.in);
