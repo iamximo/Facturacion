@@ -3,10 +3,12 @@ import clases.*;
 import excepciones.ClienteExistenteException;
 import excepciones.NoExisteClienteException;
 
+import java.awt.geom.NoninvertibleTransformException;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Scanner;
 import java.util.List;
+import java.util.InputMismatchException;
 
 public class AppCliente {
 
@@ -30,7 +32,14 @@ public class AppCliente {
                     System.out.println("Introduzca NIF: ");
                     String nif = scan.next();
                     System.out.println("Introduzca el codigo postal: ");
-                    int cp = scan.nextInt();
+                    int cp;
+                    try {
+                        cp = scan.nextInt();
+                    }catch (InputMismatchException e){
+                        cp=0;
+                        System.out.println("Codigo postal tiene que ser numerico");
+                        break;
+                    }
                     System.out.println("Introduzca provincia: ");
                     String provincia = scan.next();
                     System.out.println("Introduzca poblacion: ");
@@ -60,7 +69,13 @@ public class AppCliente {
                     System.out.println("Introduzca NIF: ");
                     nif = scan.next();
                     System.out.println("Introduzca el codigo postal: ");
-                    cp = scan.nextInt();
+                    try {
+                        cp = scan.nextInt();
+                    }catch (InputMismatchException e){
+                        cp=0;
+                        System.out.println("Codigo postal tiene que ser numerico");
+                        break;
+                    }
                     System.out.println("Introduzca provincia: ");
                     provincia = scan.next();
                     System.out.println("Introduzca poblacion: ");
