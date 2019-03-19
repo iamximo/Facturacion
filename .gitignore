@@ -5,5 +5,7 @@ facturacion.iml
 .target
 target
 idea
+*.bin
+
 
 
