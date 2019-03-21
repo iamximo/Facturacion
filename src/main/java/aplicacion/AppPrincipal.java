@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
 
-public class AppPrincipal { //Falta poner fuera del main, poner fuera de los case y arreglar EntradaSalida
+public class AppPrincipal {
 
 
     Gestor gestor = new Gestor();
@@ -35,15 +35,11 @@ public class AppPrincipal { //Falta poner fuera del main, poner fuera de los cas
                     AppLlamadas.ejecutarMenu(gestor);
                     break;
                 case CARGAR:
-
                         EntradaSalida a=new EntradaSalida();
                         gestor=a.cargarDatos();
-
                     break;
                 case GUARDAR:
-
-                        new EntradaSalida().guardarDatos(gestor);
-
+                    new EntradaSalida().guardarDatos(gestor);
                     break;
                 case SALIR:
                     System.out.println("Hasta pronto :) ");
