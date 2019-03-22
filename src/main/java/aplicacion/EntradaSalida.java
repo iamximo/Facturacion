@@ -42,17 +42,18 @@ public class EntradaSalida implements Serializable {
         try{
             fichEntrada=new FileInputStream(nombreFich);
         }catch (FileNotFoundException e){
-            System.out.println("Fichero no encontrado.");
+            System.out.println("\nFichero no encontrado.\n");
 
         }
         try {
+
             ObjectInputStream objetoEntrada = new ObjectInputStream(fichEntrada);
             gestor=(Gestor)objetoEntrada.readObject();
             objetoEntrada.close();
             System.out.println("Datos cargados...");
             return gestor;
 
-        }catch (IOException e){}catch (ClassNotFoundException c){}
+        }catch (IOException e){}catch (ClassNotFoundException c){}catch(NullPointerException n){}
     return null;
     }
 
