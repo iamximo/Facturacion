@@ -2,7 +2,7 @@ package clases;
 
 import java.io.Serializable;
 
-public class Tarifa implements Serializable {
+public abstract class Tarifa implements Serializable {
 
     private float precio;
 
@@ -10,7 +10,7 @@ public class Tarifa implements Serializable {
         this.precio=precio;
     }
 
-    public float getPrecio() {
+    public float getPrecio(Llamada llamada) {
         return precio;
     }
 
@@ -18,8 +18,6 @@ public class Tarifa implements Serializable {
         this.precio = precio;
     }
 
-    public String toString(){
-        return String.valueOf(this.precio);
-    }
+    public abstract String toString();
 
 }
