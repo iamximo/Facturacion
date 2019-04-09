@@ -23,8 +23,8 @@ public class AppCliente {
             MenuCliente opcionMenuCliente = MenuCliente.getOpcion(opcion);
 
             switch (opcionMenuCliente) {
-                case ALTA_NUEVO_CLIENTE:
-                    altaCliente(gestor);
+                case ALTA_NUEVO_EMPRESA:
+                    altaEmpresa(gestor);
                     break;
                 case ALTA_NUEVO_PARTICULAR:
                     altaParticular(gestor);
@@ -57,9 +57,12 @@ public class AppCliente {
 
     }
 
-    private static void altaCliente(Gestor gestor){
+
+
+    private static void altaEmpresa(Gestor gestor){
+        FactoriaCliente fabrica= new FactoriaCliente();
         Scanner scan = new Scanner(System.in);
-        System.out.println(MenuCliente.ALTA_NUEVO_CLIENTE.getDescripcion());
+        System.out.println(MenuCliente.ALTA_NUEVO_EMPRESA.getDescripcion());
         System.out.println("Introduzca el nombre: ");
         String nombre = scan.nextLine();
         System.out.println("Introduzca NIF: ");
@@ -82,7 +85,7 @@ public class AppCliente {
         String email = scan.next();
         System.out.println("Introduzca precio de la tarifa: ");
         float precio = scan.nextFloat();
-        Cliente nuevo = new Cliente(nombre, nif,direccion,email, LocalDateTime.now(), precio);
+        Cliente nuevo = fabrica.getEmpresaNuevo(nombre, nif,direccion,email, LocalDateTime.now(), precio);
         try{
             gestor.altaCliente(nuevo);
             System.out.println("\n Cliente introducido correctamente.");
@@ -95,8 +98,9 @@ public class AppCliente {
     }
 
     private static void altaParticular(Gestor gestor){
+        FactoriaCliente fabrica=new FactoriaCliente();
         Scanner scan = new Scanner(System.in);
-        System.out.println(MenuCliente.ALTA_NUEVO_CLIENTE.getDescripcion());
+        System.out.println(MenuCliente.ALTA_NUEVO_EMPRESA.getDescripcion());
         System.out.println("Introduzca el nombre: ");
         String nombre = scan.next();
         System.out.println("Introduzca apellidos:");
@@ -121,7 +125,7 @@ public class AppCliente {
         String email = scan.next();
         System.out.println("Introduzca precio de la tarifa: ");
         float precio = scan.nextFloat();
-        Cliente nuevo = new Particular(nombre, apellidos, nif,direccion,email, LocalDateTime.now(), precio);
+        Cliente nuevo=fabrica.getParticularNuevo(nombre, apellidos, nif,direccion,email, LocalDateTime.now(), precio);
         try{
             gestor.altaCliente(nuevo);
             System.out.println("\n Cliente introducido correctamente.");
@@ -145,6 +149,12 @@ public class AppCliente {
     }
 
     private static void cambioTarifa(Gestor gestor){
+
+
+        //TODO "CAMBIAR PARA QUE SE APLIQUEN LAS TARIFAS"
+
+
+
         System.out.println(MenuCliente.CAMBIO_TARIFA.getDescripcion());
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduzca el NIF delcliente al que desea cambiar la tarifa: ");

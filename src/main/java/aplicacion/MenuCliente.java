@@ -2,7 +2,7 @@ package aplicacion;
 
 public enum MenuCliente{
 
-    ALTA_NUEVO_CLIENTE("Dar de alta un nuevo cliente"),
+    ALTA_NUEVO_EMPRESA("Dar de alta un nuevo cliente empresa"),
     ALTA_NUEVO_PARTICULAR("Dar de alta un nuevo cliente particular"),
     BORRAR_CLIENTE("Borrar un cliente"),
     CAMBIO_TARIFA("Cambiar la tarifa de un cliente"),

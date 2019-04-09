@@ -6,15 +6,16 @@ import static org.junit.Assert.assertEquals;
 
 public class ClienteTest {
 
+    FactoriaCliente fabrica=new FactoriaCliente();
     LocalDateTime fecha = LocalDateTime.of(1999,11,06,10,00);
 
     Direccion dir=new Direccion(12000, "Castellon","Castellon");
 
 
 
-    Cliente cli1= new Cliente("Juan","20914825U",dir,"juan@uji.es",fecha,2);
-    Cliente cli2= new Cliente("Lourdes","53742927Y",dir,"lourdes@uji.es",fecha,5);
-    Cliente cli3= new Cliente("Mario","24653725S",dir,"mario@uji.es",fecha,6);
+    Cliente cli1= fabrica.getEmpresaNuevo("Juan","20914825U",dir,"juan@uji.es",fecha,2);
+    Cliente cli2= fabrica.getEmpresaNuevo("Lourdes","53742927Y",dir,"lourdes@uji.es",fecha,5);
+    Cliente cli3= fabrica.getEmpresaNuevo("Mario","24653725S",dir,"mario@uji.es",fecha,6);
 
 
     @Test

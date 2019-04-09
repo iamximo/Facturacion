@@ -22,8 +22,9 @@ public class GestorTest {
     LocalDateTime fecha = LocalDateTime.of(1999,11,6,10,00);
     LocalDateTime fecha2 = LocalDateTime.of(1999,11,7,10,00);
 
-    Cliente cli1= new Cliente("Juan","20914825U",null,"juan@uji.es",fecha,2);
-    Cliente cli2= new Cliente("Juana","20914825Us",null,"juan@uji.es",fecha2,2);
+    FactoriaCliente fabrica=new FactoriaCliente();
+    Cliente cli1= fabrica.getEmpresaNuevo("Juan","20914825U",null,"juan@uji.es",fecha,2);
+    Cliente cli2= fabrica.getEmpresaNuevo("Juana","20914825Us",null,"juan@uji.es",fecha2,2);
     Llamada llam=new Llamada("675672891",null,3);
 
 

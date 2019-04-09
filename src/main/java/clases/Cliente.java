@@ -16,6 +16,7 @@ public class Cliente implements Fecha, Serializable {
     private List<Llamada> listaLlamadas;
     private List<Factura> listaFacturas;
 
+    FactoriaTarifa fabrica=new FactoriaTarifa();
 
 
     public Cliente(String nombre, String nif, Direccion direccion, String email, LocalDateTime fecha, float precio){
@@ -24,7 +25,7 @@ public class Cliente implements Fecha, Serializable {
         this.direccion=direccion;
         this.email=email;
         this.fecha=fecha;
-        this.tarifa = new TarifaBasica(precio);
+        this.tarifa =fabrica.getTarifaBasica(precio);
         this.listaLlamadas = new ArrayList<Llamada>();
         this.listaFacturas = new ArrayList<Factura>();
     }

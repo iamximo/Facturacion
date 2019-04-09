@@ -12,10 +12,12 @@ public class GeneradorDatos implements Serializable
     ArrayList<Cliente> listaClientesPrueba = new ArrayList();
     GeneradorDatosINE gen = new GeneradorDatosINE();
     Cliente cli;
+    FactoriaCliente fabrica=new FactoriaCliente();
 
     public GeneradorDatos() {
         generar();
     }
+
 
 
     private void generar() { for (int i = 0; i < 50; i++) {
@@ -25,10 +27,12 @@ public class GeneradorDatos implements Serializable
         String email = nombre + i + "@gmail.com";
         LocalDateTime fecha = LocalDateTime.now();
         if (i % 2 == 0) {
-            cli = new Cliente(nombre, gen.getNIF(), dir, email, fecha, i);
+            cli=fabrica.getEmpresaNuevo(nombre,gen.getNIF(),dir,email,fecha,i);
+
+
         }
         else {
-            cli = new Particular(nombre, gen.getApellido(), gen.getNIF(), dir, email, fecha, i);
+            cli=fabrica.getParticularNuevo(nombre,gen.getApellido(),gen.getNIF(),dir,email,fecha,i);
         }
 
         listaClientesPrueba.add(cli);
@@ -39,13 +43,5 @@ public class GeneradorDatos implements Serializable
         return listaClientesPrueba;
     }
 
-    /*
-    public static void main(String[] args) {
-        GeneradorDatos g = new GeneradorDatos();
-        g.generar();
-        for (Cliente cl : g.listaClientesPrueba) {
-            System.out.println(cl.toString());
-        }
-    }*/
 
 }
