@@ -6,21 +6,20 @@ import java.time.LocalDateTime;
 public class TarifaDia extends TarifaEspecial{
 
     private DayOfWeek dia;
-    float precioEspecial;
+
 
     public TarifaDia(Tarifa tarifa,float precioEspecial,DayOfWeek dia){
         super(tarifa,precioEspecial);
         this.dia=dia;
-        this.precioEspecial=precioEspecial;
     }
 
 
     public float getPrecioTarifa(Llamada llamada){
         if (esAplicable(llamada)){
-            if (precioEspecial*llamada.getDuracion()<super.getPrecioTarifa(llamada))
-                return precioEspecial*llamada.getDuracion();
+            if (precio*llamada.getDuracion() < tarifa.getPrecioTarifa(llamada))
+                return precio*llamada.getDuracion();
         }
-        return super.getPrecioTarifa(llamada);
+        return tarifa.getPrecioTarifa(llamada);
     }
 
 

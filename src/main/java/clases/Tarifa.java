@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Tarifa implements Serializable {
 
-    private float precio;
+    protected float precio;
 
     public Tarifa(float precio){
         this.precio=precio;

@@ -13,7 +13,7 @@ public class TarifaTest {
     Tarifa tar1=new TarifaBasica(20);
     Tarifa tar2=new TarifaBasica(0);
     TarifaDia tar3=new TarifaDia(tar1,5,LocalDate.now().getDayOfWeek());
-    TarifaDia tar4=new TarifaDia(tar1,21,LocalDate.now().getDayOfWeek());
+    TarifaDia tar4=new TarifaDia(tar1,28,LocalDate.now().getDayOfWeek());
 
 
     @Test

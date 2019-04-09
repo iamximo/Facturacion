@@ -4,6 +4,7 @@ public abstract class TarifaEspecial extends Tarifa {
 
     protected Tarifa tarifa;
 
+
     public TarifaEspecial(Tarifa tarifa, float precioEspecial){
         super(precioEspecial);
         this.tarifa=tarifa;

@@ -8,13 +8,13 @@ public class TarifaHora extends TarifaEspecial{
 
     private LocalTime horaIni;
     private LocalTime horaFin;
-    float precioEspecial;
+
 
     public TarifaHora(Tarifa tarifa,float precioEspecial,LocalTime horaIni,LocalTime horaFin){
         super(tarifa,precioEspecial);
         this.horaIni=horaIni;
         this.horaFin=horaFin;
-        this.precioEspecial=precioEspecial;
+
 
     }
 
@@ -25,9 +25,9 @@ public class TarifaHora extends TarifaEspecial{
 
     public float getPrecioTarifa(Llamada llamada){
         if (esAplicable(llamada)){
-            if (llamada.getDuracion()*precioEspecial<super.getPrecioTarifa(llamada)) return llamada.getDuracion()*precioEspecial;
+            if (llamada.getDuracion()*precio<tarifa.getPrecioTarifa(llamada)) return llamada.getDuracion()*precio;
         }
-        return super.getPrecioTarifa(llamada);
+        return tarifa.getPrecioTarifa(llamada);
     }
 
 
