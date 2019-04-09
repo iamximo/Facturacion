@@ -24,7 +24,7 @@ public class Cliente implements Fecha, Serializable {
         this.direccion=direccion;
         this.email=email;
         this.fecha=fecha;
-        this.tarifa = new Tarifa(precio);
+        this.tarifa = new TarifaBasica(precio);
         this.listaLlamadas = new ArrayList<Llamada>();
         this.listaFacturas = new ArrayList<Factura>();
     }

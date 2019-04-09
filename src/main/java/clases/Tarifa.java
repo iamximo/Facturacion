@@ -10,7 +10,11 @@ public abstract class Tarifa implements Serializable {
         this.precio=precio;
     }
 
-    public float getPrecio(Llamada llamada) {
+    public float getPrecioTarifa(Llamada llamada) {
+        return precio*llamada.getDuracion();
+    }
+
+    public float getPrecio(){
         return precio;
     }
 

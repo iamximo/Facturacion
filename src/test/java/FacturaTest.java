@@ -9,7 +9,7 @@ public class FacturaTest {
 
     LocalDateTime fecha = LocalDateTime.of(1999,11,06,10,00);
     LocalDateTime fecha2 = LocalDateTime.of(2000,11,06,10,00);
-    Tarifa tar=new Tarifa(2);
+    Tarifa tar=new TarifaBasica(2);
     Factura fact=new Factura("1",tar,fecha,fecha2);
 
     @Test
