@@ -11,6 +11,10 @@ public abstract class TarifaEspecial extends Tarifa {
 
     }
 
+    public void setTarifaEspecial(Tarifa tar){
+        this.tarifa=tar;
+    }
+
 
     public abstract boolean esAplicable(Llamada llamada);
 
@@ -18,4 +22,7 @@ public abstract class TarifaEspecial extends Tarifa {
     public String toString() {
         return tarifa.toString();
     }
+
+
+
 }

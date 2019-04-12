@@ -20,7 +20,7 @@ public class TarifaHora extends TarifaEspecial{
 
     @Override
     public String toString(){
-        return "Se aplica tarifa de horas";
+        return "Esta tarifa es HORA";
     }
 
     public float getPrecioTarifa(Llamada llamada){
@@ -33,12 +33,20 @@ public class TarifaHora extends TarifaEspecial{
 
     @Override
     public boolean esAplicable(Llamada llamada){
-        if(llamada.getFecha().toLocalTime().isAfter(horaIni) && llamada.getFecha().toLocalTime().isBefore(horaFin)){
+        if((llamada.getFecha().toLocalTime().isAfter(horaIni) || llamada.getFecha().toLocalTime().equals(horaIni))&&(llamada.getFecha().plusMinutes((long)llamada.getDuracion()).toLocalTime().isBefore(horaFin) ||llamada.getFecha().plusMinutes((long)llamada.getDuracion()).toLocalTime().equals(horaFin) )){
             return true;
         }
         return false;
     }
+    public Tarifa getTarifaEncapsulada(){
+        return tarifa;
+    }
 
+    public LocalTime getHoraIni() {
+        return horaIni;
+    }
 
-
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
 }

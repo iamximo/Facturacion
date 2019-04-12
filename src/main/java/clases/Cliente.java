@@ -50,6 +50,10 @@ public class Cliente implements Fecha, Serializable {
         return tarifa;
     }
 
+    public void setTarifa(Tarifa tarifa) {
+        this.tarifa = tarifa;
+    }
+
     public LocalDateTime getFecha() {
         return fecha;
     }
@@ -72,6 +76,10 @@ public class Cliente implements Fecha, Serializable {
     public String toString(){
         return "\nNIF: "+this.getNif()+"\nNOMBRE: "+this.getNombre()+"\nDIRECCION: "+this.getDireccion().toString()+"\nEMAIL: "+this.getEmail()+"\nFECHA: "+this.getFecha()+"\nTARIFA: "+this.getTarifa().toString();
     }
+
+
+
+
 
 
 

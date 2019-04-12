@@ -25,7 +25,7 @@ public class TarifaDia extends TarifaEspecial{
 
     @Override
     public String toString(){
-        return "Se aplica tarifa de dia";
+        return "Esta tarifa es DIA";
     }
 
     @Override
@@ -36,6 +36,9 @@ public class TarifaDia extends TarifaEspecial{
         return false;
 
 
+    }
+    public Tarifa getTarifaEncapsulada(){
+        return tarifa;
     }
 
 

@@ -10,7 +10,11 @@ public class TarifaBasica extends Tarifa{
 
     @Override
     public String toString(){
-        return "Se aplica tarifa basica";
+        return "Esta tarifa es BASICA";
     }
 
+    @Override
+    public Tarifa getTarifaEncapsulada() {
+        return null;
+    }
 }

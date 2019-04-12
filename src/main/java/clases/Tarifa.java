@@ -24,4 +24,6 @@ public abstract class Tarifa implements Serializable {
 
     public abstract String toString();
 
+    public abstract Tarifa getTarifaEncapsulada();
+
 }

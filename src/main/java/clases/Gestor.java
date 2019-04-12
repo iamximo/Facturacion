@@ -5,13 +5,16 @@ import excepciones.NoExisteClienteException;
 import excepciones.NoExisteFacturaException;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Gestor implements Serializable {
 
     private HashMap<String,Cliente> listaClientes;
     private HashMap<String,Factura> listaFacturas;
+    FactoriaTarifa fabrica_tarifas=new FactoriaTarifa();
 
     public Gestor(){
         listaClientes= new HashMap<String, Cliente>();
@@ -129,6 +132,26 @@ public class Gestor implements Serializable {
         int min=scan.nextInt();
         return LocalDateTime.of(year,month,day,hour,min);
     }
+
+    public void añadirTarifaHora(String nif, float precio, LocalTime ini,LocalTime fin) throws  NoExisteClienteException{
+        if(!listaClientes.containsKey(nif)) throw new NoExisteClienteException();
+        Cliente cli=listaClientes.get(nif);
+        Tarifa tar_anterior=cli.getTarifa();
+        TarifaHora tar=fabrica_tarifas.getTarifaHora(tar_anterior,precio,ini,fin);
+        cli.setTarifa(tar);
+
+    }
+
+    public void añadirTarifaDia(String nif, float precio,DayOfWeek dia) throws  NoExisteClienteException{
+        if(!listaClientes.containsKey(nif)) throw new NoExisteClienteException();
+        Cliente cli=listaClientes.get(nif);
+        Tarifa tar_anterior=cli.getTarifa();
+        TarifaDia tar=fabrica_tarifas.getTarifaDia(tar_anterior,precio,dia);
+        cli.setTarifa(tar);
+
+    }
+
+
 
 }
 

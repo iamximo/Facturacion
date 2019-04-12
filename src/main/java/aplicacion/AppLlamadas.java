@@ -48,6 +48,7 @@ public class AppLlamadas {
         int duracion=scan.nextInt();
         Llamada nuevaLlamada=new Llamada(numDestino,fechaHora,duracion);
         gestor.altaLlamada(nif,nuevaLlamada);
+        //TODO Creo que necesitamos dar de alta la llamada en la lista que tiene el cliente
     }
 
     private static void llamadasCliente(Gestor gestor){

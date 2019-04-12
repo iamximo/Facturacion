@@ -2,7 +2,10 @@ package aplicacion;
 import clases.*;
 import excepciones.ClienteExistenteException;
 import excepciones.NoExisteClienteException;
+
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Scanner;
 import java.util.List;
@@ -151,15 +154,12 @@ public class AppCliente {
     private static void cambioTarifa(Gestor gestor){
 
 
-        //TODO "CAMBIAR PARA QUE SE APLIQUEN LAS TARIFAS"
-
-
-
         System.out.println(MenuCliente.CAMBIO_TARIFA.getDescripcion());
         Scanner scan = new Scanner(System.in);
-        System.out.println("Introduzca el NIF delcliente al que desea cambiar la tarifa: ");
+        System.out.println("Introduzca el NIF del cliente al que desea cambiar la tarifa: ");
         String nif=scan.next();
-        System.out.println("Introduzca el nuevo precio de la tarifa: ");
+
+        System.out.println("Introduzca el nuevo precio de la tarifa basica : ");
         float precio=scan.nextFloat();
         try{
             gestor.cambioTarifa(nif,precio);
@@ -167,6 +167,73 @@ public class AppCliente {
         }catch (NoExisteClienteException e){
             System.out.println("No se ha cambiado la tarifa, el cliente introducido no existe.");
         }
+
+
+
+        boolean fin=false;
+        while(!fin){
+            System.out.println("Indica que tarifa quieres añadir: ");
+            System.out.println("1.  Tarifa de hora");
+            System.out.println("2.  Tarifa de dia");
+            System.out.println("3.  Salir");
+            int tar=scan.nextInt();
+            if(tar==3) break;
+            if(tar==1){
+                System.out.println("Introduzca el nuevo precio de la tarifa de horas : ");
+                float prec=scan.nextFloat();
+                System.out.println("Introduzca la hora de inicio: ");
+                LocalTime ini=LocalTime.of(scan.nextInt(),0);
+                System.out.println("Introduzca la hora de fin: ");
+                LocalTime fi=LocalTime.of(scan.nextInt(),0);
+                try{
+                    gestor.añadirTarifaHora(nif,prec,ini,fi);
+                }catch(NoExisteClienteException e){}
+
+            }
+            if(tar==2){
+                System.out.println("Introduzca el nuevo precio de la tarifa de dia : ");
+                float prec=scan.nextFloat();
+                System.out.println("Introduzca el dia de inicio: ");
+                System.out.println("1.LUNES\t2.MARTES\t3.MIERCOLES\t4.JUEVES\t5.VIERNES\t6.SABADO\t7.DOMINGO");
+                int dia=scan.nextInt();
+                DayOfWeek diae=DayOfWeek.SUNDAY;
+                switch (dia) {
+                    case 1:
+                        diae=DayOfWeek.MONDAY;
+                        break;
+                    case 2:
+                        diae=DayOfWeek.TUESDAY;
+                        break;
+                    case 3:
+                        diae=DayOfWeek.WEDNESDAY;
+                        break;
+                    case 4:
+                        diae=DayOfWeek.THURSDAY;
+                        break;
+                    case 5:
+                        diae=DayOfWeek.FRIDAY;
+                        break;
+                    case 6:
+                        diae=DayOfWeek.SATURDAY;
+                        break;
+                    case 7:
+                        diae=DayOfWeek.SUNDAY;
+                        break;
+
+                }
+                try {
+                    gestor.añadirTarifaDia(nif, precio, diae);
+                }catch(NoExisteClienteException e){}
+
+            }
+        }
+
+
+
+
+
+
+
     }
 
     private static void datosCliente(Gestor gestor){

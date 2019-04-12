@@ -5,7 +5,10 @@ import excepciones.NoExisteClienteException;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.security.sasl.SaslServer;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -120,6 +123,71 @@ public class GestorTest {
         assertEquals(miGestor.estaEnElIntervalo(miGestor.getListaClientes(),fecha_ref,fecha_ref2).size(),1,0);
         assertEquals(miGestor.estaEnElIntervalo(miGestor.getListaClientes(),fecha_ref,fecha_ref3).size(),2,0);
 
+    }
+
+    @Test
+    public void añadirTarifaHoraTest(){
+        try {
+        FactoriaCliente fabrica2=new FactoriaCliente();
+
+        Cliente cli1=fabrica2.getParticularNuevo("Juan","Carlos","20",null,"s",null,20);
+        Llamada lla=new Llamada("2",LocalDateTime.of(2000,12,6,16,00),3);
+
+        try {
+            miGestor.altaCliente(cli1);
+        } catch(ClienteExistenteException e){}
+
+
+        miGestor.añadirTarifaHora("20", 10, LocalTime.of(13, 0), LocalTime.of(14, 00));
+
+
+
+        try {
+            float pre = miGestor.getCliente("20").getTarifa().getPrecioTarifa(lla);
+            assertEquals(pre,60,0);
+        }catch(NoExisteClienteException e){};
+
+        Llamada lla2=new Llamada("2",LocalDateTime.of(2000,12,6,13,00),3);
+
+            float pre = miGestor.getCliente("20").getTarifa().getPrecioTarifa(lla2);
+            assertEquals(pre,30,0);
+
+
+
+        } catch(NoExisteClienteException e){}
+    }
+
+
+    @Test
+    public void añadirTarifaDiaTest(){
+        try {
+            FactoriaCliente fabrica2=new FactoriaCliente();
+
+            Cliente cli1=fabrica2.getParticularNuevo("Juan","Carlos","20",null,"s",null,20);
+            Llamada lla=new Llamada("2",LocalDateTime.of(2000,12,6,16,00),3);
+
+            try {
+                miGestor.altaCliente(cli1);
+            } catch(ClienteExistenteException e){}
+
+
+            miGestor.añadirTarifaDia("20", 10, DayOfWeek.FRIDAY);
+
+
+
+            try {
+                float pre = miGestor.getCliente("20").getTarifa().getPrecioTarifa(lla);
+                assertEquals(pre,60,0);
+            }catch(NoExisteClienteException e){};
+
+            Llamada lla2=new Llamada("2",LocalDateTime.of(2000,12,8,13,00),3);
+
+            float pre = miGestor.getCliente("20").getTarifa().getPrecioTarifa(lla2);
+            assertEquals(pre,30,0);
+
+
+
+        } catch(NoExisteClienteException e){}
     }
 
 
