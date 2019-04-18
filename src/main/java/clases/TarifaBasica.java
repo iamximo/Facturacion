@@ -1,8 +1,9 @@
 package clases;
 
 
+import java.io.Serializable;
 
-public class TarifaBasica extends Tarifa{
+public class TarifaBasica extends Tarifa implements Serializable {
 
     public TarifaBasica(float precio){
         super(precio);
@@ -10,7 +11,7 @@ public class TarifaBasica extends Tarifa{
 
     @Override
     public String toString(){
-        return "Esta tarifa es BASICA";
+        return "--TarB(Precio:"+precio+")";
     }
 
     @Override

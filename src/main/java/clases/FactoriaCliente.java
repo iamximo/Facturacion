@@ -1,8 +1,9 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class FactoriaCliente implements FabricaClientes{
+public class FactoriaCliente implements FabricaClientes, Serializable {
 
     public FactoriaCliente(){
         super();

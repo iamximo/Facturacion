@@ -1,9 +1,10 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class FactoriaTarifa implements  FabricaTarifas {
+public class FactoriaTarifa implements  FabricaTarifas, Serializable {
 
     @Override
     public TarifaBasica getTarifaBasica(float precio) {

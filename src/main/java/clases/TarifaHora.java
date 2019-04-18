@@ -1,10 +1,11 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class TarifaHora extends TarifaEspecial{
+public class TarifaHora extends TarifaEspecial implements Serializable {
 
     private LocalTime horaIni;
     private LocalTime horaFin;
@@ -20,7 +21,7 @@ public class TarifaHora extends TarifaEspecial{
 
     @Override
     public String toString(){
-        return "Esta tarifa es HORA";
+        return "--TarH(HI:"+horaIni+" HF:"+horaFin+" Precio:"+precio+")"+tarifa.toString();
     }
 
     public float getPrecioTarifa(Llamada llamada){

@@ -1,9 +1,10 @@
 package clases;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-public class TarifaDia extends TarifaEspecial{
+public class TarifaDia extends TarifaEspecial implements Serializable {
 
     private DayOfWeek dia;
 
@@ -25,7 +26,7 @@ public class TarifaDia extends TarifaEspecial{
 
     @Override
     public String toString(){
-        return "Esta tarifa es DIA";
+        return "--TarD(DIA:"+dia +" Precio:"+precio+")"+tarifa.toString();
     }
 
     @Override
