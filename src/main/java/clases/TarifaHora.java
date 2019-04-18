@@ -1,11 +1,11 @@
 package clases;
 
 import java.io.Serializable;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class TarifaHora extends TarifaEspecial implements Serializable {
+
+
 
     private LocalTime horaIni;
     private LocalTime horaFin;
@@ -39,9 +39,7 @@ public class TarifaHora extends TarifaEspecial implements Serializable {
         }
         return false;
     }
-    public Tarifa getTarifaEncapsulada(){
-        return tarifa;
-    }
+
 
     public LocalTime getHoraIni() {
         return horaIni;

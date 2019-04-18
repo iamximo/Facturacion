@@ -46,7 +46,7 @@ public class AppFacturas {
         String codigo = scan.next();
         while(gestor.existeCodigoFactura(codigo)){
             System.out.println("Codigo ya utilizado, introduzca otro codigo valido: ");
-            scan.next();
+            codigo=scan.next();
         }
         System.out.println("Introduzca el NIF del cliente: ");
         String nif = scan.next();

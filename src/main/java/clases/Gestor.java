@@ -68,13 +68,14 @@ public class Gestor implements Serializable {
 
     public Factura emitirFactura(Factura factura, Cliente cliente, LocalDateTime fechaEmision){
         factura.setFechaEmision(fechaEmision);
-        int minutos=0;
+        int importe=0;
         for (Llamada llam : cliente.getListaLlamadas()){
-            if(llam.getFecha().compareTo(factura.getInicioFacturacion())>0 && llam.getFecha().compareTo(factura.getFinFacturacion())<0){
-                minutos+=llam.getDuracion();
+            if(llam.getFecha().compareTo(factura.getInicioFacturacion())>=0 && llam.getFecha().compareTo(factura.getFinFacturacion())<=0){
+                importe+=factura.getTarifa().getPrecioTarifa(llam);
             }
         }
-        factura.setImporte(factura.getTarifa().getPrecio()*minutos);
+        factura.setImporte(importe);
+        System.out.println("Importe: "+importe);
         listaFacturas.put(factura.getCodigo(),factura);
         cliente.addFactura(factura);
         return factura;
@@ -148,6 +149,7 @@ public class Gestor implements Serializable {
         Tarifa tar_anterior=cli.getTarifa();
         TarifaDia tar=fabrica_tarifas.getTarifaDia(tar_anterior,precio,dia);
         cli.setTarifa(tar);
+
 
     }
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public abstract class Tarifa implements Serializable {
 
+
+    protected final String id="T";
+
     protected float precio;
 
     public Tarifa(float precio){
@@ -24,6 +27,6 @@ public abstract class Tarifa implements Serializable {
 
     public abstract String toString();
 
-    public abstract Tarifa getTarifaEncapsulada();
+
 
 }

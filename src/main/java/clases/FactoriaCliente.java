@@ -10,8 +10,8 @@ public class FactoriaCliente implements FabricaClientes, Serializable {
     }
 
     @Override
-    public Cliente getEmpresaNuevo(String nombre, String nif, Direccion direccion, String email, LocalDateTime fecha, float precio){
-        return new Cliente(nombre,nif,direccion,email,fecha,precio);
+    public Empresa getEmpresaNuevo(String nombre, String nif, Direccion direccion, String email, LocalDateTime fecha, float precio){
+        return new Empresa(nombre,nif,direccion,email,fecha,precio);
 
     }
 

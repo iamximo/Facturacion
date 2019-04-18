@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class TarifaBasica extends Tarifa implements Serializable {
 
+
+
     public TarifaBasica(float precio){
         super(precio);
     }
@@ -14,8 +16,4 @@ public class TarifaBasica extends Tarifa implements Serializable {
         return "--TarB(Precio:"+precio+")";
     }
 
-    @Override
-    public Tarifa getTarifaEncapsulada() {
-        return null;
-    }
 }

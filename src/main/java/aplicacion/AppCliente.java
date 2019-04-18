@@ -159,16 +159,6 @@ public class AppCliente {
         System.out.println("Introduzca el NIF del cliente al que desea cambiar la tarifa: ");
         String nif=scan.next();
 
-        System.out.println("Introduzca el nuevo precio de la tarifa basica : ");
-        float precio=scan.nextFloat();
-        try{
-            gestor.cambioTarifa(nif,precio);
-            System.out.println("Cambio de tarifa efectuado correctamente.");
-        }catch (NoExisteClienteException e){
-            System.out.println("No se ha cambiado la tarifa, el cliente introducido no existe.");
-        }
-
-
 
         boolean fin=false;
         while(!fin){
@@ -222,7 +212,7 @@ public class AppCliente {
 
                 }
                 try {
-                    gestor.añadirTarifaDia(nif, precio, diae);
+                    gestor.añadirTarifaDia(nif, prec, diae);
                 }catch(NoExisteClienteException e){}
 
             }
