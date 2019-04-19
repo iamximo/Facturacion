@@ -75,7 +75,6 @@ public class Gestor implements Serializable {
             }
         }
         factura.setImporte(importe);
-        System.out.println("Importe: "+importe);
         listaFacturas.put(factura.getCodigo(),factura);
         cliente.addFactura(factura);
         return factura;
