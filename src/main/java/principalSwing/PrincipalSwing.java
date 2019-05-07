@@ -3,7 +3,7 @@ package principalSwing;
 import javax.swing.SwingUtilities;
 
 import modelo.Modelo;
-import vista.Vista;
+import vista.VistaPrincipal;
 import controlador.Controlador;
 
 public class PrincipalSwing {
@@ -11,7 +11,7 @@ public class PrincipalSwing {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Vista vista = new Vista();
+                VistaPrincipal vista = new VistaPrincipal();
                 Modelo modelo = new Modelo();
                 Controlador controlador = new Controlador();
                 vista.setControlador(controlador);

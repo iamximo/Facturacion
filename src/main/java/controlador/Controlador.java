@@ -16,4 +16,9 @@ public class Controlador implements InterfaceControlador {
         this.modelo=modelo;
     }
 
+    public void nuevoCliente(){
+        //Pasa al modelo
+        System.out.println("Cliente creado");
+    }
+
 }

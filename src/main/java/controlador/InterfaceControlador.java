@@ -10,6 +10,9 @@ import java.util.List;
 public interface InterfaceControlador {
 
 
+
+    public void nuevoCliente();
+
     /*Clientes
 
     void altaCliente();
