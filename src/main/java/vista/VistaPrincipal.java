@@ -29,15 +29,20 @@ public class VistaPrincipal implements InterfaceVista{
         JFrame ventanaPrincipal = new JFrame("Facturation OMLoL");
 
         Container contenedor = ventanaPrincipal.getContentPane();
-        contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
+
 
 
         JButton botonCli = new JButton("Menu clientes");
         JButton botonFac = new JButton("Menu facturas");
         JButton botonLLam = new JButton("Menu llamadas");
-        contenedor.add(botonCli, BorderLayout.WEST);
-        contenedor.add(botonFac, BorderLayout.WEST);
-        contenedor.add(botonLLam, BorderLayout.WEST);
+
+        JPanel panelBotones=new JPanel();
+        panelBotones.add(botonCli);
+        panelBotones.add(botonFac);
+        panelBotones.add(botonLLam);
+        contenedor.add(panelBotones, BorderLayout.WEST);
+
+
 
 
         botonCli.addActionListener(new ActionListener() {

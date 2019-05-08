@@ -27,6 +27,8 @@ public class Gestor implements Serializable {
             throw new ClienteExistenteException();
         }
         listaClientes.put(nuevo.getNif(),nuevo);
+
+        System.out.println(nuevo.toString());
     }
 
     public void bajaCliente(String nif) throws NoExisteClienteException{

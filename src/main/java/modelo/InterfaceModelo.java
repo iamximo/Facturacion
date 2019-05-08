@@ -3,33 +3,19 @@ package modelo;
 import clases.Cliente;
 import clases.Factura;
 import clases.Llamada;
+import clases.TarifaDia;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface InterfaceModelo {
 
-    /*Clientes
-
-    void altaCliente(Cliente cliente);
-    void bajaCliente(Cliente cliente);
-    void cambioTarifa(String nif);
-    void getCliente(String nif);
-    void getListaClientes();
-    List<Cliente> clientesIntervalo(List<Cliente> listaClientes, LocalDateTime inicio, LocalDateTime fin);
-    void generarClientesAleatorios();
-
-    Facturas
-
-    Factura emitirFactura(Factura factura, Cliente cliente, LocalDateTime fechaEmision);
-    Factura getFactura(String codigo);
-    List<Factura> consultarFacturasCliente(String nif);
-    List<Factura> cosultarFacturasClienteIntervalo(String nif, LocalDateTime inicio, LocalDateTime fin);
-
-    Llamadas
-
-    void altaLlamada(String nif, Llamada llamada);
-    List<Llamada> consultarLlamadasCliente(String nif);
-    List<Llamada> consultarLlamadasClienteIntervalo(String nif, LocalDateTime inicio, LocalDateTime fin);
-*/
+    void altaCliente(Cliente cli);
+    void bajaCliente(String nif);
+    void añadirTarifaDia(String nif, float precio, int dia);
+    void añadirTarifaHora(String nif, float precio, int ini, int fin);
+    String getListaClientes();
+    String getDatosCliente(String nif);
+    String ClientesEntreFechas(LocalDateTime fechaInicio,LocalDateTime fechaFinal);
+    void generarClientesAutomaticos();
 }
