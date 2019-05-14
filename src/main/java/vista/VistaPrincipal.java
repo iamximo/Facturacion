@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.VistaClientes.*;
 
 
 public class VistaPrincipal implements InterfaceVista{
@@ -52,6 +51,16 @@ public class VistaPrincipal implements InterfaceVista{
                vistaCli.setControlador(controlador);
                vistaCli.setModelo(modelo);
                 vistaCli.abrirVentanaClientes();
+            }
+        });
+
+        botonFac.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaFacturas vistaFac =new VistaFacturas();
+                vistaFac.setControlador(controlador);
+                vistaFac.setModelo(modelo);
+                vistaFac.abrirVentanaFacturas();
             }
         });
 

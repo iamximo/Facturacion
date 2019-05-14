@@ -1,12 +1,10 @@
 package modelo;
 
-import clases.Gestor;
-import clases.Particular;
-import clases.TarifaDia;
+import clases.*;
 import excepciones.ClienteExistenteException;
 import excepciones.NoExisteClienteException;
+import excepciones.NoExisteFacturaException;
 import vista.InterfaceVista;
-import clases.Cliente;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -66,16 +64,57 @@ public class Modelo implements InterfaceModelo{
         try{
         return gestor.getCliente(nif).toString();
         }catch (NoExisteClienteException e){}
-        return "";
+        return "No existe el cliente";
     }
 
     @Override
     public String ClientesEntreFechas(LocalDateTime fechaInicio,LocalDateTime fechaFinal){
+        if(gestor.getListaClientes().isEmpty())return "No hay clientes";
         return gestor.mostrarColleccion(gestor.estaEnElIntervalo(gestor.getListaClientes(),fechaInicio,fechaFinal));
     }
 
     @Override
     public void generarClientesAutomaticos() {
         gestor.generarClientesAleatorios();
+    }
+
+    @Override
+    public Cliente getObjetoCliente(String nif) {
+        try {
+            return gestor.getCliente(nif);
+        }catch (NoExisteClienteException e){}
+        return null;
+    }
+
+    @Override
+    public void emitirFactura(Factura factura, String nif) {
+        try {
+            gestor.emitirFactura(factura, gestor.getCliente(nif), LocalDateTime.now());
+        }catch (NoExisteClienteException e){}
+
+    }
+
+    @Override
+    public String getFactura(String codFac) {
+        try {
+            return gestor.getFactura(codFac).toString();
+        }catch(NoExisteFacturaException e){}
+        return "No existe la factura";
+    }
+
+    @Override
+    public String getFacturasCliente(String nif) {
+        try{
+            return gestor.mostrarColleccion(gestor.getFacturasCliente(nif));
+        }catch (NoExisteClienteException e){}
+        return "No existe el cliente";
+    }
+
+    @Override
+    public String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin, String nif) {
+        try {
+            return gestor.mostrarColleccion(gestor.estaEnElIntervalo(gestor.getFacturasCliente(nif), fechaIni, fechaFin));
+        }catch (NoExisteClienteException e){}
+        return "No existe el cliente";
     }
 }

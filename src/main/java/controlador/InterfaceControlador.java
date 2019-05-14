@@ -24,6 +24,11 @@ public interface InterfaceControlador {
     String getListaClientes();
     String clientesIntervalo(LocalDateTime fechaInicio, LocalDateTime fechaFinal);
     void generarClientesAleatorios();
+    Cliente getObjetoCliente(String nif);
+    void emitirFactura(Factura factura, String nif);
+    String getFactura(String codfac);
+    String getFacturasCliente(String nif);
+    String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin,String nif);
 
 
     /*

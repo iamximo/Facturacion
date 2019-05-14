@@ -77,4 +77,30 @@ public class Controlador implements InterfaceControlador {
     public void generarClientesAleatorios() {
         modelo.generarClientesAutomaticos();
     }
+
+    @Override
+    public Cliente getObjetoCliente(String nif) {
+        return modelo.getObjetoCliente(nif);
+
+    }
+
+    @Override
+    public void emitirFactura(Factura factura, String nif) {
+        modelo.emitirFactura(factura,nif);
+    }
+
+    @Override
+    public String getFactura(String codfac) {
+        return modelo.getFactura(codfac);
+    }
+
+    @Override
+    public String getFacturasCliente(String nif) {
+        return modelo.getFacturasCliente(nif);
+    }
+
+    @Override
+    public String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin, String nif) {
+        return modelo.getFacturasIntervalo(fechaIni,fechaFin,nif);
+    }
 }
