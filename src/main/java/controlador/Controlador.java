@@ -4,6 +4,7 @@ import clases.*;
 import vista.InterfaceVista;
 import modelo.InterfaceModelo;
 
+import java.io.File;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -102,5 +103,30 @@ public class Controlador implements InterfaceControlador {
     @Override
     public String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin, String nif) {
         return modelo.getFacturasIntervalo(fechaIni,fechaFin,nif);
+    }
+
+    @Override
+    public void anyadirLlamada(String nif, Llamada llamada) {
+        modelo.anyadirLlamada(nif, llamada);
+    }
+
+    @Override
+    public String getLlamadasCliente(String nif) {
+        return modelo.getLlamadasCliente(nif);
+    }
+
+    @Override
+    public String llamadasIntervalo(String nif, LocalDateTime fechaIni, LocalDateTime fechaFin) {
+        return modelo.llamadasIntervalo(nif, fechaIni, fechaFin);
+    }
+
+    @Override
+    public void cargarFich(File fich) {
+        modelo.cargarFich(fich);
+    }
+
+    @Override
+    public void guardarFich(File fich) {
+        modelo.guardarFich(fich);
     }
 }

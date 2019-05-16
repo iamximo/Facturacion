@@ -32,6 +32,29 @@ public class EntradaSalida implements Serializable {
 
     }
 
+    public void guardarDatosFich(Gestor gestor, File fich){
+        try {
+            FileOutputStream fichero2 = new FileOutputStream(fich);
+            ObjectOutputStream objetoSalida = new ObjectOutputStream(fichero2);
+            objetoSalida.writeObject(gestor);
+            objetoSalida.close();
+        }catch (IOException e) { }
+    }
+
+    public Gestor cargarDatosFich(File fichero){
+
+        Gestor gestor;
+        try {
+            FileInputStream fichero2 = new FileInputStream(fichero);
+            ObjectInputStream objetoEntrada = new ObjectInputStream(fichero2);
+            gestor=(Gestor)objetoEntrada.readObject();
+            objetoEntrada.close();
+            return gestor;
+
+        }catch (IOException e){}catch (ClassNotFoundException c){}catch(NullPointerException n){}
+        return null;
+    }
+
     public Gestor cargarDatos(){
 
         Gestor gestor;

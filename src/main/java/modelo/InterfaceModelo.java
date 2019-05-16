@@ -5,6 +5,7 @@ import clases.Factura;
 import clases.Llamada;
 import clases.TarifaDia;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,6 +36,16 @@ public interface InterfaceModelo {
     String getFacturasCliente(String nif);
 
     String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin, String nif);
+
+    void anyadirLlamada(String nif, Llamada llamada);
+
+    String getLlamadasCliente(String nif);
+
+    String llamadasIntervalo(String nif, LocalDateTime fechaIni, LocalDateTime fechaFin);
+
+    void cargarFich(File fich);
+
+    void guardarFich(File fich);
 
 }
 

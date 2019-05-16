@@ -1,11 +1,13 @@
 package modelo;
 
+import aplicacion.EntradaSalida;
 import clases.*;
 import excepciones.ClienteExistenteException;
 import excepciones.NoExisteClienteException;
 import excepciones.NoExisteFacturaException;
 import vista.InterfaceVista;
 
+import java.io.File;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -116,5 +118,32 @@ public class Modelo implements InterfaceModelo{
             return gestor.mostrarColleccion(gestor.estaEnElIntervalo(gestor.getFacturasCliente(nif), fechaIni, fechaFin));
         }catch (NoExisteClienteException e){}
         return "No existe el cliente";
+    }
+
+    @Override
+    public void anyadirLlamada(String nif, Llamada llamada) {
+            gestor.altaLlamada(nif,llamada);
+    }
+
+    @Override
+    public String getLlamadasCliente(String nif) {
+        return gestor.mostrarColleccion(gestor.llamadasCliente(nif));
+    }
+
+    @Override
+    public String llamadasIntervalo(String nif, LocalDateTime fechaIni, LocalDateTime fechaFin) {
+        return gestor.mostrarColleccion(gestor.estaEnElIntervalo(gestor.llamadasCliente(nif),fechaIni,fechaFin));
+    }
+
+    @Override
+    public void cargarFich(File fich) {
+        EntradaSalida a = new EntradaSalida();
+        gestor= a.cargarDatosFich(fich);
+    }
+
+    @Override
+    public void guardarFich(File fich) {
+        EntradaSalida a = new EntradaSalida();
+        a.guardarDatosFich(gestor,fich);
     }
 }

@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import java.io.File;
+
 public interface InterfaceControlador {
 
 
@@ -29,6 +31,11 @@ public interface InterfaceControlador {
     String getFactura(String codfac);
     String getFacturasCliente(String nif);
     String getFacturasIntervalo(LocalDateTime fechaIni, LocalDateTime fechaFin,String nif);
+    void anyadirLlamada(String nif, Llamada llamada);
+    String getLlamadasCliente(String nif);
+    String llamadasIntervalo(String nif, LocalDateTime fechaIni, LocalDateTime fechaFin);
+    void cargarFich(File fich);
+    void guardarFich(File fich);
 
 
     /*
