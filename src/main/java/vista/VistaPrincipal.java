@@ -87,7 +87,7 @@ public class VistaPrincipal implements InterfaceVista{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser selectorCargar = new JFileChooser();
-                //selectorCargar.setFileFilter(new FileNameExtensionFilter("bin"));
+                selectorCargar.setFileFilter(new FileNameExtensionFilter("bin","bin"));
                 switch (selectorCargar.showOpenDialog(new JFrame("Elige un fichero para cargar datos"))){
                     case JFileChooser.APPROVE_OPTION:
                         File ficheroCargar= selectorCargar.getSelectedFile();
@@ -115,7 +115,7 @@ public class VistaPrincipal implements InterfaceVista{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser selectorGuardar = new JFileChooser();
-                //selectorGuardar.setFileFilter(new FileNameExtensionFilter("bin"));
+                selectorGuardar.setFileFilter(new FileNameExtensionFilter("bin","bin"));
                 switch (selectorGuardar.showSaveDialog(new JFrame("Elige un fichero para cargar datos"))){
                     case JFileChooser.APPROVE_OPTION:
                         File ficheroGuardar= selectorGuardar.getSelectedFile();
