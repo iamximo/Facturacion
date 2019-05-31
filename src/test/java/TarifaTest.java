@@ -19,6 +19,12 @@ public class TarifaTest {
     //Tarifa basica=0
     Tarifa tar2=fabrica.getTarifaBasica(0);
 
+    //Tarifa basica=1
+    Tarifa tar10=fabrica.getTarifaBasica(1);
+
+    //Tarifa basica=1 - TarifaDia=5
+    TarifaDia tar11=fabrica.getTarifaDia(tar10,5,LocalDate.now().getDayOfWeek());
+
     //Tarifa basica=20 - TarifaDia=5
     TarifaDia tar3=fabrica.getTarifaDia(tar1,5,LocalDate.now().getDayOfWeek());
 
@@ -37,6 +43,10 @@ public class TarifaTest {
 
     //Tarifa basica=20 - TarifaDia=4
     TarifaDia tar8=fabrica.getTarifaDia(tar1,4,LocalDate.ofYearDay(2019,1).getDayOfWeek());
+
+    //Tarifa basica=1 - TarifaDia=5 - TarifaHora=2
+    TarifaHora tar9=fabrica.getTarifaHora(tar11,2,LocalTime.now(),LocalTime.now().plusHours(1));
+
 
 
     @Test
@@ -62,6 +72,11 @@ public class TarifaTest {
 
         assertEquals(20*6,tar8.getPrecioTarifa(lla1),0); // Se aplica tarifa basica
         assertEquals(4*6,tar8.getPrecioTarifa(lla3),0); // Se aplica tarifa de dia
+        assertEquals(20*6,tar8.getPrecioTarifa(lla2),0); // Se aplica tarifa basica
+
+        assertEquals(1*6,tar11.getPrecioTarifa(lla1),0); // Se aplica tarifa basica
+        assertEquals(1*6,tar11.getPrecioTarifa(lla2),0); // Se aplica tarifa basica
+        assertEquals(1*6,tar11.getPrecioTarifa(lla3),0); // Se aplica tarifa basica
 
 
 
